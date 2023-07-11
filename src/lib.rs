@@ -12,6 +12,7 @@ use num_bigint::BigInt as ZZ;
 use crate::ope::Ope;
 use crate::prng::BLOCK_SIZE;
 
+#[derive(Debug)]
 pub enum OpeError
 {
 	HdgInvalidInputs,
