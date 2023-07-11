@@ -56,7 +56,7 @@ impl Prng for BlockCipher
 	{
 		for i in (0..n_bytes).step_by(BLOCK_SIZE) {
 			for j in 0..BLOCK_SIZE {
-				self.ctr[j] += 1;
+				self.ctr[j] = self.ctr[j].wrapping_add(1);
 				if self.ctr[j] != 0 {
 					break;
 				}
