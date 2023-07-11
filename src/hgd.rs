@@ -34,8 +34,6 @@ fn afc(i: f64) -> f64
 
 fn rand(prng: &mut impl Prng, precision: usize) -> f64
 {
-	//FIXME precision
-
 	let div = 1usize << precision;
 	let rzz = prng.rand_int_mod(div);
 
@@ -56,7 +54,7 @@ pub(crate) fn hgd(kk: u64, nn1: u64, nn2: u64, prng: &mut impl Prng) -> Result<u
 		return Err(OpeError::HdgInvalidInputs);
 	}
 
-	let precision = num_bits(nn1 + nn2 + kk); //FIXME precision
+	let precision = num_bits(nn1 + nn2 + kk);
 
 	let (n1, n2) = if nn1 >= nn2 {
 		(nn2 as f64, nn1 as f64)
