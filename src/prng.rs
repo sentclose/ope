@@ -1,11 +1,14 @@
 use alloc::vec;
 
 use aes::cipher::{KeyIvInit, StreamCipher};
+use num_traits::ToPrimitive;
 
 use crate::utils::{big_int_from_bytes, num_bits};
 use crate::OpeKey;
 
 type Aes128Ctr64LE = ctr::Ctr64LE<aes::Aes128>;
+
+use crate::ZZ;
 
 pub(crate) trait Prng
 {
@@ -17,7 +20,7 @@ pub(crate) trait Prng
 
 		self.rand_bytes(buf.len(), &mut buf);
 
-		big_int_from_bytes(&buf) % max as u64
+		(big_int_from_bytes(&buf) % ZZ::from(max)).to_u64().unwrap()
 	}
 }
 
@@ -61,7 +64,7 @@ impl Prng for BlockCipher
 
 			let mut ct = [0u8; BLOCK_SIZE]; //cipher text; ctr is the plaintext
 			ct.copy_from_slice(&self.ctr);
-			//TODO aes encrypt in open ssl, self.ctr = ptext; ct = ctext
+			//aes encrypt in open ssl, self.ctr = ptext; ct = ctext
 
 			self.cipher.apply_keystream(&mut ct);
 

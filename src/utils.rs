@@ -1,5 +1,4 @@
 use hmac::{Hmac, Mac};
-use num_traits::ToPrimitive;
 use sha2::{Digest, Sha256};
 
 use crate::prng::BLOCK_SIZE;
@@ -7,11 +6,9 @@ use crate::ZZ;
 
 type HmacSha256 = Hmac<Sha256>;
 
-pub(crate) fn big_int_from_bytes(bytes: &[u8]) -> u64
+pub(crate) fn big_int_from_bytes(bytes: &[u8]) -> ZZ
 {
 	ZZ::from_bytes_be(num_bigint::Sign::Plus, bytes)
-		.to_u64()
-		.unwrap()
 }
 
 // fn num_bits(n: &ZZ) -> u32
