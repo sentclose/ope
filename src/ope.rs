@@ -84,9 +84,9 @@ impl<'a> Ope<'a>
 	{
 		self.lazy_sample(
 			0,
-			1 << self.pbits,
+			self.pbits as u64, //1 << self.pbits
 			0,
-			1 << self.cbits,
+			self.cbits as u64, //1 << self.cbits
 			plaintext,
 			&mut BlockCipher::new(self.key),
 		)

@@ -19,12 +19,15 @@ pub enum OpeError
 	OpeRange,
 }
 
-const P_BITS: usize = 32;
-const C_BITS: usize = 64;
+// const P_BITS: usize = 32;
+// const C_BITS: usize = 64;
+
+const DOMAIN: usize = u16::max_value() as usize - 1;
+const RANGE: usize = u32::max_value() as usize - 1;
 
 pub type OpeKey = [u8; BLOCK_SIZE];
 
 pub fn get_ope(key: &OpeKey) -> Ope
 {
-	Ope::new(key, P_BITS, C_BITS)
+	Ope::new(key, DOMAIN, RANGE)
 }
