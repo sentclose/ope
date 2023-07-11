@@ -219,8 +219,7 @@ pub(crate) fn hgd(kk: u64, nn1: u64, nn2: u64, prng: &mut impl Prng) -> Result<u
 				let g = yn * yk / (y1 * nk) - 1.0;
 				let dg = if g < 0.0 { 1.0 + g } else { 1.0 };
 				let gu = g * (1.0 + g * (-0.5 + g / 3.0));
-				//let gl = gu - 0.25 * ((g * g) * (g * g)) / dg; //FIXME check what is correct
-				let gl = gu - 0.25 * g.sqrt().sqrt() / dg; //FIXME check what is correct
+				let gl = gu - 0.25 * g.sqrt().sqrt() / dg;
 				let xm = m + 0.5;
 				let xn = n1 - m + 0.5;
 				let xk = k - m + 0.5;
@@ -241,26 +240,22 @@ pub(crate) fn hgd(kk: u64, nn1: u64, nn2: u64, prng: &mut impl Prng) -> Result<u
 				} else {
 					/* ...TEST AGAINST LOWER BOUND... */
 
-					//let mut dr = xm * ((r * r) * (r * r)); //FIXME check what is correct
-					let mut dr = xm * r.sqrt().sqrt(); //FIXME check what is correct
+					let mut dr = xm * r.sqrt().sqrt();
 					if r < 0.0 {
 						dr = dr / (1.0 + r);
 					}
 
-					//let mut ds = xn * ((s * s) * (s * s)); //FIXME check what is correct
-					let mut ds = xn * s.sqrt().sqrt(); //FIXME check what is correct
+					let mut ds = xn * s.sqrt().sqrt();
 					if s < 0.0 {
 						ds = ds / (1.0 + s);
 					}
 
-					//let mut dt = xk * ((t * t) * (t * t)); //FIXME check what is correct
-					let mut dt = xk * t.sqrt().sqrt(); //FIXME check what is correct
+					let mut dt = xk * t.sqrt().sqrt();
 					if t < 0.0 {
 						dt = dt / (1.0 + t);
 					}
 
-					//let mut de = nm * ((e * e) * (e * e)); //FIXME check what is correct
-					let mut de = nm * e.sqrt().sqrt(); //FIXME check what is correct
+					let mut de = nm * e.sqrt().sqrt();
 					if e < 0.0 {
 						de = de / (1.0 + e);
 					}
@@ -288,10 +283,9 @@ pub(crate) fn hgd(kk: u64, nn1: u64, nn2: u64, prng: &mut impl Prng) -> Result<u
 	};
 
 	/*
-		* RETURN APPROPRIATE VARIATE
-		*/
+	 * RETURN APPROPRIATE VARIATE
+	 */
 
-	//FIXME round or not
 	let jx = if kk + kk >= (tn as u64) {
 		if nn1 > nn2 {
 			(kk - nn2) as f64 + ix
