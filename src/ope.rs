@@ -52,7 +52,7 @@ impl<'a> Ope<'a>
 		let ndomain = d_hi - d_lo + 1;
 		let nrange = r_hi - r_lo + 1;
 
-		if nrange >= ndomain {
+		if nrange < ndomain {
 			return Err(OpeError::OpeRange);
 		}
 
@@ -74,7 +74,7 @@ impl<'a> Ope<'a>
 		let dgap = domain_gap(ndomain, nrange, nrange / 2, prng)?;
 
 		if plaintext < (d_lo + dgap) {
-			self.lazy_sample(d_lo, d_lo + dgap - 1, r_lo, r_lo - 1, plaintext, prng)
+			self.lazy_sample(d_lo, d_lo + dgap - 1, r_lo, r_lo + rgap - 1, plaintext, prng)
 		} else {
 			self.lazy_sample(d_lo + dgap, d_hi, r_lo + rgap, r_hi, plaintext, prng)
 		}
