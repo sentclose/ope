@@ -2,8 +2,17 @@
 name = "ope-rs"
 version = "0.1.0"
 edition = "2021"
+authors = ["Jörn Heinemann <joernheinemann@gmx.de>"]
+repository = "https://github.com/sentclose/ope"
+description = "This is an Order-preserving encryption (OPE) lib inspired by cryptdb's ope implementation."
+license-file = "LICENSE"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+include = [
+    "Cargo.toml",
+    "LICENSE",
+    "README.md",
+    "src/**/*",
+]
 
 [dependencies]
 hmac = "0.12.1"
