@@ -219,7 +219,7 @@ pub(crate) fn hgd(kk: u64, nn1: u64, nn2: u64, prng: &mut impl Prng) -> Result<u
 				let g = yn * yk / (y1 * nk) - 1.0;
 				let dg = if g < 0.0 { 1.0 + g } else { 1.0 };
 				let gu = g * (1.0 + g * (-0.5 + g / 3.0));
-				let gl = gu - 0.25 * g.sqrt().sqrt() / dg;
+				let gl = gu - 0.25 * ((g * g) * (g * g)) / dg;
 				let xm = m + 0.5;
 				let xn = n1 - m + 0.5;
 				let xk = k - m + 0.5;
@@ -240,22 +240,22 @@ pub(crate) fn hgd(kk: u64, nn1: u64, nn2: u64, prng: &mut impl Prng) -> Result<u
 				} else {
 					/* ...TEST AGAINST LOWER BOUND... */
 
-					let mut dr = xm * r.sqrt().sqrt();
+					let mut dr = xm * ((r * r) * (r * r));
 					if r < 0.0 {
 						dr = dr / (1.0 + r);
 					}
 
-					let mut ds = xn * s.sqrt().sqrt();
+					let mut ds = xn * ((s * s) * (s * s));
 					if s < 0.0 {
 						ds = ds / (1.0 + s);
 					}
 
-					let mut dt = xk * t.sqrt().sqrt();
+					let mut dt = xk * ((t * t) * (t * t));
 					if t < 0.0 {
 						dt = dt / (1.0 + t);
 					}
 
-					let mut de = nm * e.sqrt().sqrt();
+					let mut de = nm * ((e * e) * (e * e));
 					if e < 0.0 {
 						de = de / (1.0 + e);
 					}
