@@ -54,7 +54,7 @@ pub(crate) fn hgd(kk: u64, nn1: u64, nn2: u64, prng: &mut impl Prng) -> Result<u
 		return Err(OpeError::HdgInvalidInputs);
 	}
 
-	let precision = num_bits(nn1 + nn2 + kk);
+	let precision = num_bits(nn1 + nn2 + kk) + 10;
 
 	let (n1, n2) = if nn1 >= nn2 {
 		(nn2 as f64, nn1 as f64)
