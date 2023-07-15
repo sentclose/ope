@@ -32,13 +32,13 @@ fn domain_gap(ndomain: u64, nrange: u64, rgap: u64, prng: &mut impl Prng) -> Res
 pub struct Ope<'a>
 {
 	key: &'a OpeKey,
-	pbits: usize,
-	cbits: usize,
+	pbits: u64,
+	cbits: u64,
 }
 
 impl<'a> Ope<'a>
 {
-	pub fn new(key: &'a OpeKey, plainbits: usize, cipherbits: usize) -> Self
+	pub fn new(key: &'a OpeKey, plainbits: u64, cipherbits: u64) -> Self
 	{
 		Self {
 			key,
@@ -84,9 +84,9 @@ impl<'a> Ope<'a>
 	{
 		self.lazy_sample(
 			0,
-			self.pbits as u64, //1 << self.pbits
+			self.pbits, //1 << self.pbits
 			0,
-			self.cbits as u64, //1 << self.cbits
+			self.cbits, //1 << self.cbits
 			plaintext,
 			&mut BlockCipher::new(self.key),
 		)
@@ -103,7 +103,7 @@ impl<'a> Ope<'a>
 
 		let nrange = dr.r_hi - dr.r_lo + 1;
 
-		Ok(dr.r_lo + aesrand.rand_int_mod(nrange as usize))
+		Ok(dr.r_lo + aesrand.rand_int_mod(nrange))
 	}
 
 	pub fn decrypt(&self, ctext: u64) -> Result<u64, OpeError>

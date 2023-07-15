@@ -23,8 +23,8 @@ pub enum OpeError
 // const P_BITS: usize = 32;
 // const C_BITS: usize = 64;
 
-const DOMAIN: usize = u16::max_value() as usize - 1;
-const RANGE: usize = u32::max_value() as usize - 1;
+const DOMAIN: u64 = u16::max_value() as u64 - 1;
+const RANGE: u64 = u32::max_value() as u64 - 1;
 
 pub type OpeKey = [u8; BLOCK_SIZE];
 

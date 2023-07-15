@@ -11,32 +11,9 @@ pub(crate) fn big_int_from_bytes(bytes: &[u8]) -> ZZ
 	ZZ::from_bytes_be(num_bigint::Sign::Plus, bytes)
 }
 
-// fn num_bits(n: &ZZ) -> u32
-// {
-// 	if n.is_zero() {
-// 		return 0;
-// 	}
-//
-// 	let mut bits = 0;
-// 	let mut temp = n.bits();
-//
-// 	while !temp.is_zero() {
-// 		bits += 1;
-// 		temp >>= 1u32;
-// 	}
-//
-// 	bits
-// }
-//
-// fn num_bits3(n: &ZZ) -> usize
-// {
-// 	let bits = n.bits();
-// 	bits.to_usize().unwrap()
-// }
-
-pub(crate) fn num_bits(mut n: u64) -> usize
+pub(crate) fn num_bits(mut n: u64) -> u64
 {
-	let mut bits = 0;
+	let mut bits = 0u64;
 
 	while n > 0 {
 		bits += 1;
