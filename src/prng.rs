@@ -14,9 +14,9 @@ pub(crate) trait Prng
 {
 	fn rand_bytes(&mut self, n_bytes: usize, buf: &mut [u8]);
 
-	fn rand_int_mod(&mut self, max: usize) -> u64
+	fn rand_int_mod(&mut self, max: u64) -> u64
 	{
-		let mut buf = vec![0u8; num_bits(max as u64) / 8 + 1];
+		let mut buf = vec![0u8; (num_bits(max) / 8 + 1) as usize];
 
 		self.rand_bytes(buf.len(), &mut buf);
 

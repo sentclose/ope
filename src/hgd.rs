@@ -15,6 +15,7 @@ const SCALE: f64 = 1.0e25;
  * IF (I .GT. 7), USE STIRLING'S APPROXIMATION
  * OTHERWISE,  USE TABLE LOOKUP
  */
+//noinspection RsApproxConstant
 fn afc(i: f64) -> f64
 {
 	// if lte 7 use computed table
@@ -32,9 +33,9 @@ fn afc(i: f64) -> f64
 	}
 }
 
-fn rand(prng: &mut impl Prng, precision: usize) -> f64
+fn rand(prng: &mut impl Prng, precision: u64) -> f64
 {
-	let div = 1usize << precision;
+	let div = 1u64 << precision;
 	let rzz = prng.rand_int_mod(div);
 
 	rzz as f64 / div as f64
