@@ -1,5 +1,5 @@
 [package]
-name = "ope-rs"
+name = "ope"
 version = "0.1.0"
 edition = "2021"
 authors = ["Jörn Heinemann <joernheinemann@gmx.de>"]
