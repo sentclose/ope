@@ -4,7 +4,7 @@ This is an Order-preserving encryption (OPE) lib inspired by cryptdb's ope imple
 
 It is a pure rust implementation, no c dependencies needed.
 
-It is also written for no-std targets (thanks to num-traits).
+It is also written for no-std targets (thanks to num-traits) and works in wasm.
 
 The max value to encrypt is `65532`
 
@@ -25,8 +25,3 @@ fn main()
 	assert!(b < c);
 }
 ```
-
-## Warning
-
-Do not mix values encrypted with different arch. Only the same bit size is comparable.
-E.g. value encrypted on wasm32 can't compare to the same value encrypted on x64.
