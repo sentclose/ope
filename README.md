@@ -9,7 +9,7 @@ It is also written for no-std targets (thanks to num-traits) and works in wasm.
 The max value to encrypt is `65532`
 
 ```rust
-use ope_rs::get_ope;
+use ope::get_ope;
 
 fn main()
 {
